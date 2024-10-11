@@ -20,3 +20,4 @@ wandb
 x_transformers>=1.31.14
 zhconv
 zhon
+pydub
