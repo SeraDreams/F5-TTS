@@ -3,7 +3,6 @@ from __future__ import annotations
 import os
 import gc
 from tqdm import tqdm
-import wandb
 
 import torch
 from torch.optim import AdamW
@@ -48,33 +47,33 @@ class Trainer:
         ema_kwargs: dict = dict()
     ):
         
-        ddp_kwargs = DistributedDataParallelKwargs(find_unused_parameters = True)
+        # ddp_kwargs = DistributedDataParallelKwargs(find_unused_parameters = True)
 
-        self.accelerator = Accelerator(
-            log_with = "wandb",
-            kwargs_handlers = [ddp_kwargs],
-            gradient_accumulation_steps = grad_accumulation_steps,
-            **accelerate_kwargs
-        )
+        # self.accelerator = Accelerator(
+        #     log_with = "wandb",
+        #     kwargs_handlers = [ddp_kwargs],
+        #     gradient_accumulation_steps = grad_accumulation_steps,
+        #     **accelerate_kwargs
+        # )
         
         # if exists(wandb_resume_id):
         #     init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name, 'id': wandb_resume_id}}
         # else:
-        init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name}}
-        self.accelerator.init_trackers(
-            project_name = wandb_project, 
-            init_kwargs=init_kwargs,
-            config={"epochs": epochs,
-                    "learning_rate": learning_rate,
-                    "num_warmup_updates": num_warmup_updates, 
-                    "batch_size": batch_size,
-                    "batch_size_type": batch_size_type,
-                    "max_samples": max_samples,
-                    "grad_accumulation_steps": grad_accumulation_steps,
-                    "max_grad_norm": max_grad_norm,
-                    "gpus": self.accelerator.num_processes,
-                    "noise_scheduler": noise_scheduler}
-            )
+        # init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name}}
+        # self.accelerator.init_trackers(
+        #     project_name = wandb_project, 
+        #     init_kwargs=init_kwargs,
+        #     config={"epochs": epochs,
+        #             "learning_rate": learning_rate,
+        #             "num_warmup_updates": num_warmup_updates, 
+        #             "batch_size": batch_size,
+        #             "batch_size_type": batch_size_type,
+        #             "max_samples": max_samples,
+        #             "grad_accumulation_steps": grad_accumulation_steps,
+        #             "max_grad_norm": max_grad_norm,
+        #             "gpus": self.accelerator.num_processes,
+        #             "noise_scheduler": noise_scheduler}
+        #     )
 
         self.model = model
 
