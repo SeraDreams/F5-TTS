@@ -218,7 +218,7 @@ def load_datase(
               "May also the corresponding script cuz different dataset may have different format.")
         # pre, post = dataset_name.split("_")
         path = "EN/*.tar"
-        dataset = load_dataset("amphion/Emilia-Dataset", data_files={"en": path}, split="en", streaming=True)
+        train_dataset = load_dataset("amphion/Emilia-Dataset", data_files={"en": path}, split="en", streaming=True)
 
     return train_dataset
 
