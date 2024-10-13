@@ -59,9 +59,12 @@ class HFDataset(Dataset):
         mel_spec = self.mel_spectrogram(audio_tensor)
         
         mel_spec = rearrange(mel_spec, '1 d t -> d t')
-        
-        text = row['text']
-        
+
+        if row['text']:
+            text = row['text']    
+        elif row['transcription']:
+            text = row['text']
+    
         return dict(
             mel_spec = mel_spec,
             text = text,
@@ -97,7 +100,10 @@ class CustomDataset(Dataset):
     def __getitem__(self, index):
         row = self.data[index]
         audio_path = row["audio_path"]
-        text = row["text"]
+        if row['text']:
+            text = row['text']    
+        elif row['transcription']:
+            text = row['text']
         duration = row["duration"]
 
         if self.preprocessed_mel:
