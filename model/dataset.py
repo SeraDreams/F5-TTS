@@ -191,7 +191,7 @@ class DynamicBatchSampler(Sampler[list[int]]):
 def load_dataset(
         dataset_name: str,
         tokenizer: str,
-        dataset_type: str = "CustomDataset", 
+        dataset_type: str = "HFDataset", 
         audio_type: str = "raw", 
         mel_spec_kwargs: dict = dict()
         ) -> CustomDataset | HFDataset:
