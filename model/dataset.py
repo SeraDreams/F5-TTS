@@ -217,7 +217,7 @@ def load_dataset(
         print("Should manually modify the path of huggingface dataset to your need.\n" +
               "May also the corresponding script cuz different dataset may have different format.")
         # pre, post = dataset_name.split("_")
-        path = "DE/*.tar"
+        path = "EN/*.tar"
         train_dataset = HFDataset(load_dataset("amphion/Emilia-Dataset", data_files={"en": path}, split="en", streaming=True))
 
     return train_dataset
