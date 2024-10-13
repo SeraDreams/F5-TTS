@@ -188,14 +188,11 @@ class DynamicBatchSampler(Sampler[list[int]]):
 
 # Load dataset
 
-def load_dataset(
+def load_datase(
         dataset_name: str,
         tokenizer: str,
         dataset_type: str = "HFDataset", 
         audio_type: str = "raw",
-        data_files={"en": "EN/*.tar"}
-        split="en"
-        streaming=True
         mel_spec_kwargs: dict = dict()
         ) -> CustomDataset | HFDataset:
     
@@ -220,7 +217,8 @@ def load_dataset(
         print("Should manually modify the path of huggingface dataset to your need.\n" +
               "May also the corresponding script cuz different dataset may have different format.")
         # pre, post = dataset_name.split("_")
-        train_dataset = HFDataset(load_dataset("amphion/Emilia-Dataset", data_files, split, streaming))
+        path = "EN/*.tar"
+        dataset = load_dataset("amphion/Emilia-Dataset", data_files={"en": path}, split="en", streaming=True)
 
     return train_dataset
 
