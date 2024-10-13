@@ -57,10 +57,10 @@ class Trainer:
             **accelerate_kwargs
         )
         
-        if exists(wandb_resume_id):
-            init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name, 'id': wandb_resume_id}}
-        else:
-            init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name}}
+        # if exists(wandb_resume_id):
+        #     init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name, 'id': wandb_resume_id}}
+        # else:
+        init_kwargs={"wandb": {"resume": "allow", "name": wandb_run_name}}
         self.accelerator.init_trackers(
             project_name = wandb_project, 
             init_kwargs=init_kwargs,
